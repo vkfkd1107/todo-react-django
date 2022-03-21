@@ -13,15 +13,13 @@
   }
 }
 
-.list {
-  margin-left: 200px;
+.todo {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-.todo {
-  display: flex;
-  margin-top: 10px;
+.list {
+  margin-top: 5px;
 }
 
 .update {
