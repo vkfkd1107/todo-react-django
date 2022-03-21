@@ -1,23 +1,17 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { TodoList } from './api/api';
 
 
 function App() {
 
-  let [ todolist, setTodoList ] = useState([
-    { id:1, todo:'리액트 공부하기' },
-    { id:2, todo:'장고 공부하기' },
-  ]);
-
-  let [ axios_list, setList ] = useState([])  
+  let [ todolist, setTodoList ] = useState([])
 
   let list = todolist.map((list) =>
-    <div className='todo'>
-      <li key={list.id}>{list.todo}</li>
-      <input type='submit' className='update' value="수정"/>
-    </div>
+    <li className='list' key={list.id}>
+        {list.title}
+        <input type='submit' className='update' value="수정"/>
+    </li>
   );
 
   useEffect(() => {
@@ -27,7 +21,7 @@ function App() {
   const AxiosList = async () => {
     try {
       const list = await TodoList();
-      setList([...list.data])
+      setTodoList([...list.data])
     }catch(err) {
       console.log(err);
     }
@@ -39,18 +33,8 @@ function App() {
         <h1>TodoList</h1>
       </header>
       <div className='content'>
-      <button onClick={() => {
-        axios
-          .get("http://127.0.0.1:8000/api/Todo/")
-          .then((res) => {
-            setList([...res.data])
-          })
-          .catch(function (err) {
-            console.log(err)
-          })
-      }}>Button</button>
 
-        <div className='list'>
+        <div className='todo'>
           { list }
         </div>
 
